@@ -19,6 +19,7 @@ public class Main {
         StudentService service = new StudentService();
         try {
             Student student = service.create("Вася", "студент", address, courses);
+            Student student2 = service.create("Петя", "студент", address, courses);
         } catch (DBException e){
             System.out.println("что-то пошло не так");
         }

@@ -1,6 +1,6 @@
 package service;
 
-import dao.StudentDao;
+import dao.*;
 import entity.Course;
 import exception.DBException;
 import entity.Address;
@@ -18,12 +18,14 @@ public class StudentService {
     public Student create(String name, String grade, Address address, List<Course> courses) throws DBException {
         Transaction transaction = DBService.getTransaction();
         try {
-            StudentDao dao = new StudentDao();
-            Long id = dao.create(new Student(name, grade, address, courses));
-            Student student = dao.get(id);
+            StudentDao studentDao = DaoFactory.getStudentDao();
+            Student student = new Student(name, grade, courses);
+            student.setAddress(address);
 
+            Long studentId = studentDao.create(student);
+
+            student = studentDao.get(studentId);
             transaction.commit();
-
             return student;
         } catch (HibernateException | NoResultException | NullPointerException e) {
             DBService.transactionRollback(transaction);

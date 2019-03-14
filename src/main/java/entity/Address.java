@@ -1,9 +1,15 @@
 package entity;
 
-import javax.persistence.Embeddable;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
-@Embeddable
+import javax.persistence.*;
+
+@Entity
 public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String street;
     private String city;
     private String zip;
@@ -16,27 +22,11 @@ public class Address {
         this.zip = zip;
     }
 
-    public String getStreet() {
-        return street;
+    public Long getId() {
+        return id;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getZip() {
-        return zip;
-    }
-
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

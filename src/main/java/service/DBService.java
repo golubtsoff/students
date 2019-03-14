@@ -1,6 +1,8 @@
 package service;
 
+import entity.Address;
 import entity.Course;
+import entity.Hobby;
 import entity.Student;
 import exception.ServiceException;
 import org.hibernate.Session;
@@ -86,8 +88,9 @@ public abstract class DBService {
     }
 
     private static void addAnnotatedClassToConfiguration(Configuration configuration) {
-        configuration.addAnnotatedClass(Student.class)
-//        .addAnnotatedClass(Course.class)
+        configuration
+                .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Address.class)
         ;
     }
 
