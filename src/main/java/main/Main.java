@@ -16,8 +16,8 @@ public class Main {
         Address address2 = new Address("ул. Ленина");
         StudentService service = new StudentService();
         try {
-            Student student = service.create(new Student(10L, "Вася"), address);
-            Student student2 = service.create(new Student(20L, "Петя"), address);
+            Student student = service.create(new Student("Вася", "Лыжи"), address);
+            Student student2 = service.create(new Student("Петя", null), address);
         } catch (DBException e){
             System.out.println("что-то пошло не так");
         }

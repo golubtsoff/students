@@ -9,26 +9,32 @@ import java.util.Map;
 
 @Entity
 @Table(name = "students")
+@SecondaryTables({
+        @SecondaryTable(name = "hobbies"),
+        @SecondaryTable(name = "addresses"),
+})
 public class Student {
     @Id
-    @Column(name = "ID")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "student_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @Column(table = "hobbies")
+    private String hobby;
+    @Column(table = "addresses")
+    @Embedded
     private Address address;
 
     public Student(){}
 
-    public Student(String name){
-        this(null, name);
+    public Student(String name, String hobby){
+        this(null, name, hobby);
     }
 
-    public Student(Long id, String name){
+    public Student(Long id, String name, String hobby){
         this.id = id;
         this.name = name;
+        this.hobby = hobby;
     }
 
     public Address getAddress() {

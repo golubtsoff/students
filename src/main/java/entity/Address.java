@@ -1,16 +1,16 @@
 package entity;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "addresses")
+@Embeddable
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
+    @Column(name="street")
     private String street;
 
     public Address(){}
@@ -19,11 +19,14 @@ public class Address {
         this.street = street;
     }
 
-    public Long getId() {
-        return id;
+    @Getter
+    public String getStreet() {
+        return street;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @Setter
+    public void setStreet(String street) {
+        this.street = street;
     }
+
 }

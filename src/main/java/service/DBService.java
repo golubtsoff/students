@@ -90,7 +90,7 @@ public abstract class DBService {
     private static void addAnnotatedClassToConfiguration(Configuration configuration) {
         configuration
                 .addAnnotatedClass(Student.class)
-                .addAnnotatedClass(Address.class)
+//                .addAnnotatedClass(Address.class)
         ;
     }
 
