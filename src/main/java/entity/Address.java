@@ -9,13 +9,18 @@ import javax.persistence.*;
 @Table(name = "addresses")
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Student student;
+
     private String street;
 
     public Address(){}
 
-    public Address(String street){
+    public Address(Long id, String street){
+        this.id = id;
         this.street = street;
     }
 

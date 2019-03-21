@@ -1,7 +1,6 @@
 package service;
 
 import dao.*;
-import entity.Course;
 import exception.DBException;
 import entity.Address;
 import entity.Student;
@@ -9,7 +8,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 
 import javax.persistence.NoResultException;
-import java.util.List;
 
 public class StudentService {
 
@@ -19,11 +17,12 @@ public class StudentService {
         Transaction transaction = DBService.getTransaction();
         try {
             StudentDao studentDao = DaoFactory.getStudentDao();
-            student.setAddress(address);
-
             Long studentId = studentDao.create(student);
 
-            student = studentDao.get(studentId);
+            address.setId(studentId);
+            AddressDao addressDao = DaoFactory.getAddressDao();
+            addressDao.create(address);
+
             transaction.commit();
             return student;
         } catch (HibernateException | NoResultException | NullPointerException e) {
