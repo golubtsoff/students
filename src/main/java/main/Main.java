@@ -12,12 +12,14 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Address address = new Address("ул. Ленина");
-        Address address2 = new Address("ул. Ленина");
         StudentService service = new StudentService();
         try {
-            Student student = service.create(new Student("Вася", "Лыжи"), address);
-            Student student2 = service.create(new Student("Петя", null), address);
+            Student student = service.create(
+                    new Student("Вася", "Лыжи", new Address("ул. Ленина", 7))
+            );
+            Student student2 = service.create(
+                    new Student("Петя", "Хоккей", new Address("ул. Фрунзе", 4))
+            );
         } catch (DBException e){
             System.out.println("что-то пошло не так");
         }
