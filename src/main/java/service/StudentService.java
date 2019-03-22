@@ -20,6 +20,7 @@ public class StudentService {
             Long studentId = studentDao.create(student);
 
             address.setId(studentId);
+            address.setStudent(student);
             AddressDao addressDao = DaoFactory.getAddressDao();
             addressDao.create(address);
 

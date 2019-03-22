@@ -11,7 +11,10 @@ public class Address {
     @Id
     private Long id;
 
-    @OneToOne
+    @OneToOne(
+            fetch = FetchType.LAZY,
+            optional = false
+    )
     @PrimaryKeyJoinColumn
     private Student student;
 
@@ -30,5 +33,21 @@ public class Address {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 }
