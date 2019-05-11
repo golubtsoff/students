@@ -1,8 +1,6 @@
 package service;
 
-import entity.Address;
-import entity.Course;
-import entity.Hobby;
+import entity.Room;
 import entity.Student;
 import exception.ServiceException;
 import org.hibernate.Session;
@@ -42,7 +40,7 @@ public abstract class DBService {
 
     public static Transaction getTransaction(){
         Session session = DBService.getSessionFactory().getCurrentSession();
-        Transaction transaction = DBService.getSessionFactory().getCurrentSession().getTransaction();
+        Transaction transaction = session.getTransaction();
         if (!transaction.isActive()) {
             transaction = session.beginTransaction();
         }
@@ -90,6 +88,7 @@ public abstract class DBService {
     private static void addAnnotatedClassToConfiguration(Configuration configuration) {
         configuration
                 .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Room.class)
 //                .addAnnotatedClass(Address.class)
         ;
     }

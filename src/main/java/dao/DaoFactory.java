@@ -7,7 +7,8 @@ public abstract class DaoFactory {
 
     private static final List<Dao> daoList = Arrays.asList(
             new AddressDao(),
-            new StudentDao()
+            new StudentDao(),
+            new RoomDao()
     );
 
     private static <T extends Dao> T getDao(Class<T> cl){
@@ -20,6 +21,10 @@ public abstract class DaoFactory {
 
     public static StudentDao getStudentDao(){
         return getDao(StudentDao.class);
+    }
+
+    public static RoomDao getRoomDao(){
+        return getDao(RoomDao.class);
     }
 
     public static AddressDao getAddressDao(){

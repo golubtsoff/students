@@ -17,7 +17,7 @@ public class StudentService {
         try {
             StudentDao studentDao = DaoFactory.getStudentDao();
             Long studentId = studentDao.create(student);
-            student = studentDao.get(studentId);
+            //student = studentDao.get(studentId);
             transaction.commit();
             return student;
         } catch (HibernateException | NoResultException | NullPointerException e) {
