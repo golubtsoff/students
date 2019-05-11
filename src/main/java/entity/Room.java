@@ -9,15 +9,19 @@ import javax.persistence.*;
 public class Room {
 
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "number")
     private int number;
 
-//    TODO: Разобраться, почему, если убрать 'optional = false':
-//    работает FetchType.LAZY, в противном случае LAZY надо поменять на EAGER
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
-    @PrimaryKeyJoinColumn
+    @OneToOne(
+            fetch = FetchType.LAZY,
+            optional = false,
+            cascade = CascadeType.PERSIST
+    )
+    @JoinColumn(name = "student_id", unique = true)
     private Student student;
 
     public Room(){}

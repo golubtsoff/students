@@ -1,6 +1,7 @@
 package main;
 
 import dao.DaoFactory;
+import entity.Hobby;
 import entity.Room;
 import exception.DBException;
 import org.hibernate.Hibernate;
@@ -33,12 +34,14 @@ public class Main {
             Room room = roomService.create(new Room(5, student));
             System.out.println(room);
             Room room2 = roomService.get(room.getId());
-            Address address = room2.getStudent().getAddress();
             System.out.println(room2);
+            Student student1 = room2.getStudent();
+            Address address = student1.getAddress();
 
             PersistenceUtil persistenceUtil = Persistence.getPersistenceUtil();
             boolean isLoaded = persistenceUtil.isLoaded(room2);
             Student student3 = room2.getStudent();
+            System.out.println(student3);
 
         } catch (DBException e){
             System.out.println("что-то пошло не так");
