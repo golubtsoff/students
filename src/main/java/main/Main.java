@@ -34,10 +34,11 @@ public class Main {
             System.out.println(room);
             Room room2 = roomService.get(room.getId());
             Address address = room2.getStudent().getAddress();
+            Student student1 = room2.getStudent();
             System.out.println(room2);
 
             PersistenceUtil persistenceUtil = Persistence.getPersistenceUtil();
-            boolean isLoaded = persistenceUtil.isLoaded(room2);
+            boolean isLoaded = persistenceUtil.isLoaded(room2.getStudent());
             Student student3 = room2.getStudent();
 
         } catch (DBException e){

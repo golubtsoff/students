@@ -4,6 +4,7 @@ import dao.DaoFactory;
 import dao.RoomDao;
 import entity.Room;
 import exception.DBException;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 
@@ -30,6 +31,7 @@ public class RoomService {
         Transaction transaction = DBService.getTransaction();
         try {
             Room room = DaoFactory.getRoomDao().get(id);
+            Hibernate.initialize(room.getStudent());
             transaction.commit();
             return room;
         } catch (HibernateException | NoResultException | NullPointerException e) {

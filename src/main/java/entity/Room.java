@@ -16,7 +16,7 @@ public class Room {
 
 //    TODO: Разобраться, почему, если убрать 'optional = false':
 //    работает FetchType.LAZY, в противном случае LAZY надо поменять на EAGER
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @PrimaryKeyJoinColumn
     private Student student;
 
