@@ -5,6 +5,7 @@ import entity.Room;
 import exception.DBException;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 import service.DBService;
 import service.RoomService;
@@ -31,15 +32,13 @@ public class Main {
             );
 
             Room room = roomService.create(new Room(5, student));
-            System.out.println(room);
             Room room2 = roomService.get(room.getId());
             Address address = room2.getStudent().getAddress();
-            Student student1 = room2.getStudent();
-            System.out.println(room2);
 
+            Session session = DBService.getSessionFactory().getCurrentSession();
+            boolean isContains = session.contains(room2.getStudent());
             PersistenceUtil persistenceUtil = Persistence.getPersistenceUtil();
             boolean isLoaded = persistenceUtil.isLoaded(room2.getStudent());
-            Student student3 = room2.getStudent();
 
         } catch (DBException e){
             System.out.println("что-то пошло не так");

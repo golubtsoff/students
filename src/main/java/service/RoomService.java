@@ -6,6 +6,7 @@ import entity.Room;
 import exception.DBException;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.NoResultException;
@@ -33,6 +34,8 @@ public class RoomService {
             Room room = DaoFactory.getRoomDao().get(id);
             Hibernate.initialize(room.getStudent());
             transaction.commit();
+            Session session = DBService.getSessionFactory().getCurrentSession();
+            boolean isContains = session.contains(room.getStudent());
             return room;
         } catch (HibernateException | NoResultException | NullPointerException e) {
             DBService.transactionRollback(transaction);

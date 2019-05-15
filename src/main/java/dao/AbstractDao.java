@@ -23,7 +23,7 @@ public abstract class AbstractDao<T> implements Dao<T> {
     public T get(long id) {
         return DBService.getSessionFactory()
                 .getCurrentSession()
-                .get(parameterizedClass, id, LockMode.PESSIMISTIC_READ);
+                .get(parameterizedClass, id);
     }
 
     @Override
